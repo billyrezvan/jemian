@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Jemian 🖤</title>
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+        .card {
+            background: #1a1a1a;
+            border: 2px solid #333;
+            padding: 40px 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            max-width: 400px;
+            width: 85%;
+            position: relative;
+        }
+        h1 {
+            font-size: 22px;
+            color: #ff4d4d;
+            margin-bottom: 15px;
+        }
+        h2 {
+            font-size: 18px;
+            color: #ffffff;
+            margin-bottom: 35px;
+            line-height: 1.5;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            align-items: center;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 15px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.1s ease;
+        }
+        #yes-btn {
+            background-color: #ff3366;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4);
+            z-index: 10;
+        }
+        #no-btn {
+            background-color: #333;
+            color: #aaa;
+            position: relative;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="card">
+        <h1>Hai Jemian... ❤️</h1>
+        <h2 id="question">Lu sayang kan sama Nox melebihi diskon Shopee angka kembar? 🥺</h2>
+        <div class="btn-container">
+            <button id="yes-btn" onclick="nextQuestion()">Sayang banget!</button>
+            <button id="no-btn" ontouchstart="moveButton()" onmouseover="moveButton()" onclick="moveButton()">Enggak sih</button>
+        </div>
+    </div>
+
+    <script>
+        function moveButton() {
+            const noBtn = document.getElementById('no-btn');
+            
+            // Ubah posisi jadi fixed biar bisa lari bebas di layar HP
+            noBtn.style.position = 'fixed';
+            
+            const maxX = window.innerWidth - noBtn.offsetWidth - 30;
+            const maxY = window.innerHeight - noBtn.offsetHeight - 30;
+            
+            const randomX = Math.max(20, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(20, Math.floor(Math.random() * maxY));
+            
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        function nextQuestion() {
+            // Reset posisi tombol "Enggak sih" ke tempat semula biar pas masuk pertanyaan ke-2 gak nyasar
+            const noBtn = document.getElementById('no-btn');
+            noBtn.style.position = 'relative';
+            noBtn.style.left = '0px';
+            noBtn.style.top = '0px';
+
+            // Ubah konten card buat masuk ke pertanyaan kedua
+            const card = document.getElementById('card');
+            card.innerHTML = `
+                <h1>Satu lagi... 😏</h1>
+                <h2 id="question">Lu sayang gua melebihi abi kan?</h2>
+                <div class="btn-container">
+                    <button id="yes-btn" onclick="sayYes()">Jelas banget!</button>
+                    <button id="no-btn" ontouchstart="moveButton()" onmouseover="moveButton()" onclick="moveButton()">Enggak sih</button>
+                </div>
+            `;
+        }
+
+        function sayYes() {
+            const card = document.getElementById('card');
+            card.innerHTML = `
+                <h1 style="color: #00ff66;">[ACCESS GRANTED] 🖤</h1>
+                <h2 style="font-size: 16px; color: #ddd; line-height: 1.6;">
+                    Bagus, gitu dong. Awas aja lu ga suka gua, gua santet lu, wkwk love you kampunk 🖤
+                </h2>
+            `;
+        }
+    </script>
+
+</body>
+</html>
